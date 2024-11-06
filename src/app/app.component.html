@@ -1,10 +1,10 @@
-<nz-layout>
-  <nz-header>header</nz-header>
-  <nz-layout>
-    <nz-sider>left sidebar</nz-sider>
-    <nz-content> <nz-card nzTitle="XiXi">xiaoxixi</nz-card> </nz-content>
-    <button nz-button nzType="primary">primary</button>
-    <nz-sider>right sidebar</nz-sider>
-  </nz-layout>
-  <nz-footer>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</nz-footer>
-</nz-layout>
+
+<div class="chat-box">
+  <div class="messages">
+    <div *ngFor="let message of messages" [ngClass]="message.role">
+      <span>{{ message.content }}</span>
+    </div>
+  </div>
+  <input [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a message..." />
+  <button (click)="sendMessage()">Send</button>
+</div>

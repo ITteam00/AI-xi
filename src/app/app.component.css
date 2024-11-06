@@ -1,4 +1,4 @@
-:host {
+/* :host {
   display: flex;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -77,4 +77,38 @@ nz-content {
   padding: 24px;
   background: #fff;
   height: 100%;
+} */
+.chat-box {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.messages {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.user {
+  text-align: right;
+  color: blue;
+}
+
+.assistant {
+  text-align: left;
+  color: green;
+}
+
+input {
+  width: calc(100% - 60px);
+  padding: 10px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px;
 }
