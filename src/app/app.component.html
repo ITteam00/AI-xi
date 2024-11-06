@@ -1,7 +1,7 @@
 <h1 class="xx-header">(￣^￣)ゞ恋嶼制作ん❀</h1>
 <div class="chat-box">
   <div class="header">
-    <mat-form-field class="example-full-width">
+    <mat-form-field color="accent" class="example-full-width">
       <mat-label>Choose a bot personality</mat-label>
       <mat-select [(ngModel)]="selectedPersonality" (ngModelChange)="messages = []">
         <mat-option *ngFor="let personality of personalities" [value]="personality.value">
@@ -20,9 +20,11 @@
       </mat-card>
     </div>
   </div>
+  <mat-spinner color="accent" class="message-loader" *ngIf="isLoading$() | async"></mat-spinner>
+
 
   <div class="input-area">
-    <mat-form-field class="example-full-width">
+    <mat-form-field color="accent" class="example-full-width">
       <mat-label>请留下对我说的话</mat-label>
       <textarea
         matInput
@@ -31,7 +33,7 @@
         (keyup.enter)="sendMessage()"
       ></textarea>
     </mat-form-field>
-    <button mat-stroked-button color="primary" (click)="sendMessage()">
+    <button mat-stroked-button color="accent" (click)="sendMessage()">
       Send
     </button>
   </div>
