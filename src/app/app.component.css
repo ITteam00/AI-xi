@@ -23,7 +23,7 @@
 }
 
 .messages .user,
-.messages .system {
+.messages .assistant {
   display: flex;
   align-items: flex-start;
   margin-bottom: 10px;
@@ -33,7 +33,7 @@
   flex-direction: row-reverse;
 }
 
-.messages .system {
+.messages .assistant {
   justify-content: flex-start;
 }
 
@@ -53,6 +53,7 @@ mat-card {
   max-width: 75%;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 10px;
 }
 
 mat-card-subtitle {
