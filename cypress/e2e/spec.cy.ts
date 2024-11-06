@@ -1,15 +1,22 @@
-describe('My First Test', () => {
-  it('Visits the initial project page', () => {
-    cy.visit('/')
-    cy.get('[data-cy="add-counter-btn"]').click();
-    cy.get('[data-cy="decrease-shower"]').contains('number: 0');
-    cy.get('[data-cy="increase-btn"]').click();
-    cy.get('[data-cy="increase-btn"]').click();
-    cy.get('.btn').contains('+').click();
-    cy.get('[data-cy="decrease-shower"]').contains('number: 3');
-    cy.get('[data-cy="decrease-btn"]').click();
-    cy.get('.btn').contains('-').click();
+describe('Chat Box E2E Test', () => {
+  beforeEach(() => {
+    cy.visit('/'); // 访问你的应用程序
+  });
 
-    cy.get('[data-cy="decrease-shower"]').contains('number: 1');
-  })
-})
+  it('should display initial messages and allow user to send a new message', () => {
+
+    cy.get('.messages .user, .messages .assistant').should('have.length', 0);
+
+    cy.get('textarea[placeholder="Type a message..."]').type('Hello, this is a test message!{enter}');
+
+    cy.get('button').contains('Send').click();
+
+    cy.get('.messages .user').should('have.length', 1);
+    cy.get('.messages .user').last().contains('Hello, this is a test message!');
+
+    cy.intercept('POST', '/api/generateContent', {
+      body: 'This is a response from the AI.'
+    }).as('generateContent');
+
+  });
+});
