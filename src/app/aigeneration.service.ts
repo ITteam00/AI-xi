@@ -25,6 +25,13 @@ interface TextGenerationResponse {
   };
   request_id: string;
 }
+export enum Personality {
+  Humorous = 'humorous',
+  Caring = 'caring',
+  Knowledgeable = 'knowledgeable',
+  Strict = 'strict',
+  Friendly = 'friendly'
+}
 
 @Injectable({
   providedIn: 'root'
@@ -34,25 +41,31 @@ export class AIGenerationService {
   private apiKey = environment.apiKey;
 
   constructor(private http: HttpClient) { }
-
   // 定义方法并只返回 content 字段
-  generateContent(userInput :string): Observable<string> {
+  generateContent(userInput :string, personality: Personality): Observable<string> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.apiKey}`,
       'Content-Type': 'application/json'
     });
+    const personalities = {
+      humorous: "你是一个幽默风趣的机器人，总是喜欢用笑话和幽默的方式回复用户的问题。",
+      caring: "你是一个温暖关怀的机器人，总是用温柔和鼓励的语言回复用户的问题，给他们带来安慰和支持。",
+      knowledgeable: "你是一个知识渊博的机器人，总是用详细和准确的信息回复用户的问题，帮助他们解决各种疑难杂症。",
+      strict: "你是一个严格认真的机器人，总是用正式和严谨的语言回复用户的问题，确保所有信息都是准确无误的。",
+      friendly: "你是一个友好随和的机器人，总是用轻松和友好的语言回复用户的问题，让他们感到轻松愉快。"
+    };
 
     const body = {
       "model": "qwen-max",
       "input": {
         "messages": [
-          { "role": "system", "content": "你是一个能够提供情绪价值的高手,你的特点是幽默且充满正能量,总是能够给别人及时的情绪价值,我会给你一些话，你根据这些话给出高情商和简短回复" },
+          { "role": "system", "content": personalities[personality] },
           { "content": userInput, "role": "user" }
         ],
       },
       "parameters": {
-        "temperature": 0.8,
-        "seed": 12360,
+        "temperature": 0.1,
+        "seed": 15555,
         "result_format": "message"
       }
     };

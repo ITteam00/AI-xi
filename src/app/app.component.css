@@ -66,3 +66,7 @@ mat-form-field {
 button {
   padding: 10px 20px;
 }
+.avatar{
+  width: 50px;
+  border-radius: 50%;
+}

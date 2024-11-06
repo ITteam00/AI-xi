@@ -1,8 +1,20 @@
 <div class="chat-box">
+  <div class="header">
+    <mat-form-field class="example-full-width">
+      <mat-label>Choose a bot personality</mat-label>
+      <mat-select [(ngModel)]="selectedPersonality">
+        <mat-option *ngFor="let personality of personalities" [value]="personality.value">
+          <img class="avatar" [src]="personality.avatar" />
+          {{ personality.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
   <div class="messages">
-    <div *ngFor="let message of messages" [ngClass]="message.role">
-      <img class="photo" [src]="getPhoto(message.role)" />
-      <mat-card>
+    <div *ngFor="let message of messages" [ngClass]="message.role" class="message">
+      <img class="photo" [src]="getPhoto( message.role, selectedPersonality)" />
+      <mat-card class="message-card">
         <mat-card-subtitle>{{ message.content }}</mat-card-subtitle>
       </mat-card>
     </div>
