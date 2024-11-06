@@ -23,7 +23,7 @@
 }
 
 .messages .user {
-  justify-content: flex-end;
+  flex-direction: row-reverse;
 }
 
 .messages .system {
