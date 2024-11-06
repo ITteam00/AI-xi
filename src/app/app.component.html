@@ -1,10 +1,25 @@
-
 <div class="chat-box">
   <div class="messages">
     <div *ngFor="let message of messages" [ngClass]="message.role">
-      <span>{{ message.content }}</span>
+      <img class="photo" [src]="getPhoto(message.role)" />
+      <mat-card>
+        <mat-card-subtitle>{{ message.content }}</mat-card-subtitle>
+      </mat-card>
     </div>
   </div>
-  <input [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a message..." />
-  <button (click)="sendMessage()">Send</button>
+
+  <div class="input-area">
+    <mat-form-field class="example-full-width">
+      <mat-label>Leave a comment</mat-label>
+      <textarea
+        matInput
+        placeholder="Type a message..."
+        [(ngModel)]="userInput"
+        (keyup.enter)="sendMessage()"
+      ></textarea>
+    </mat-form-field>
+    <button mat-stroked-button color="primary" (click)="sendMessage()">
+      Send
+    </button>
+  </div>
 </div>
