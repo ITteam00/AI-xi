@@ -3,7 +3,7 @@
   <div class="header">
     <mat-form-field class="example-full-width">
       <mat-label>Choose a bot personality</mat-label>
-      <mat-select [(ngModel)]="selectedPersonality">
+      <mat-select [(ngModel)]="selectedPersonality" (ngModelChange)="messages = []">
         <mat-option *ngFor="let personality of personalities" [value]="personality.value">
           <img class="avatar" [src]="personality.avatar" />
           {{ personality.viewValue }}
