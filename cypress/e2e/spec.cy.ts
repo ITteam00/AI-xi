@@ -7,7 +7,7 @@ describe('Chat Box E2E Test', () => {
 
     cy.get('.messages .user, .messages .assistant').should('have.length', 0);
 
-    cy.get('textarea[placeholder="Type a message..."]').type('Hello, this is a test message!{enter}');
+    cy.get('textarea[placeholder="和我聊天，一起恋爱叭~"]').type('Hello, this is a test message!{enter}');
 
     cy.get('button').contains('Send').click();
 
