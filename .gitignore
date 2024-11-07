@@ -41,3 +41,16 @@ testem.log
 .DS_Store
 Thumbs.db
 src/environments/environment.ts
+src/assets/anyan.jpg
+.gitignore
+src/assets/hanyu.jpg
+src/assets/hanyu.jpg
+src/assets/dandan.jpg
+.gitignore
+src/assets/kenan.jpg
+src/assets/liting.jpg
+src/assets/liusheng.jpg
+src/assets/tangqi.jpg
+src/assets/yanchun.jpg
+src/assets/zongyi.png
+cypress/screenshots/spec.cy.ts/Chat Box E2E Test -- should display initial messages and allow user to send a new message (failed).png
