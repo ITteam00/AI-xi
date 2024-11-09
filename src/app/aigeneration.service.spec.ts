@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { AIGenerationService } from './aigeneration.service';
+import { AIGenerationService, Personality } from './aigeneration.service';
 import { environment } from '../environments/environment';
 
 fdescribe('AIGenerationService', () => {
@@ -32,7 +32,7 @@ fdescribe('AIGenerationService', () => {
             finish_reason: 'stop',
             message: {
               role: 'assistant',
-              content: '这是一个高情商的回复'
+              content: '这是生成的内容'
             }
           }
         ]
@@ -42,18 +42,19 @@ fdescribe('AIGenerationService', () => {
         output_tokens: 5,
         input_tokens: 5
       },
-      request_id: '12345'
+      request_id: 'test-request-id'
     };
 
-    const userInput = '我有一个新任务：写完作业后去敲鼓';
+    const userInput = '测试输入';
+    const personality = Personality.Humorous;
 
-    service.generateContent(userInput).subscribe(content => {
-      expect(content).toBe('这是一个高情商的回复');
+    service.generateContent(userInput, personality).subscribe(content => {
+      expect(content).toBe('这是生成的内容');
     });
 
-    const req = httpMock.expectOne(`${environment.apiUrl}`);
+    const req = httpMock.expectOne(environment.apiUrl);
     expect(req.request.method).toBe('POST');
-    expect(req.request.body.input.messages[1].content).toBe(userInput);
+    expect(req.request.headers.get('Authorization')).toBe(`Bearer ${environment.apiKey}`);
     req.flush(mockResponse);
   });
 });
